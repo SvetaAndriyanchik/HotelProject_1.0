@@ -1,0 +1,37 @@
+body {
+    background: url(../images/bg.png) repeat;
+}
+
+.wrapper {
+    width: 300px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 120px;
+    background: #f3f3f3;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    margin-bottom: 15px;
+    margin-left: -200px;
+    margin-top: -130px;
+}
+
+.wrapper .msg{
+    font-family: serif;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 34px;
+    color: #414848;
+    text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
+    margin-bottom: 10px;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+.wrapper .bill{
+    margin: 0 0 10px;
+    margin-left: 70px;
+}

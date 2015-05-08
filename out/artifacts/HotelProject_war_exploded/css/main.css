@@ -1,0 +1,83 @@
+@import url(http://fonts.googleapis.com/css?family=Bree+Serif);
+
+body{
+    background: url(../images/bg.png) repeat;
+}
+
+ul#menu {
+    list-style-type:none;
+    margin:0; padding:0;
+}
+ul#menu li a{
+    color:#414848;
+    background: url(/images/vert_menu2.png) no-repeat 0 0;
+    text-decoration:none;
+    width: 200px;
+    height: 55px;
+    display:block;
+    border:none;
+}
+ul#menu li a:hover{
+    background-position: 50% 100%;
+    width: 200px;
+    height: 55px;
+    display:block;
+}
+ul#menu li a span{
+    font-family:'Bree Serif', sans-serif;
+    font-size:18px;
+    font-weight: 300;
+    padding:17px 0 0 20px;
+    display:block;
+}
+
+#container{
+    position: absolute;
+    top: 10px;
+    left: 60px;
+    height: 150px;
+    width: 470px; /* 3 images of 150px showing with a 10px margin = 3*(150) + 2*(10) = 470 */
+    overflow: hidden;
+}
+
+/*
+h2{
+    margin: 0;
+    color: #666;
+    padding-top: 90px;
+    font-size: 52px;
+    font-family: sans-serif;
+}
+
+.item{
+    background: #333;
+    text-align: center;
+    height: 300px !important;
+}
+.carousel{
+    margin-top: 20px;
+}
+*/
+
+#container img{
+    position: absolute;
+    top: 0px;
+    height: 150px;
+    width: 150px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+#carouselLeft{
+    position: absolute;
+    top: 60px;
+    left: 0px;
+    cursor: pointer;
+}
+
+#carouselRight{
+    position: absolute;
+    top: 60px;
+    left: 540px;
+    cursor: pointer;
+}
