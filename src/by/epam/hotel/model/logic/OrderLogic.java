@@ -4,20 +4,19 @@ package by.epam.hotel.model.logic;
 import by.epam.hotel.model.DAO.OrderDAO;
 import by.epam.hotel.model.DAO.UserDAO;
 import by.epam.hotel.model.domain.Order;
+import by.epam.hotel.model.domain.Room;
 import org.apache.log4j.Logger;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
+import java.util.*;
 
 public class OrderLogic {
 
     private static Logger log = Logger.getLogger(OrderLogic.class);
 
+    
     public boolean createOrder(int guests, String arrivalDate, String departureDate, String login){
         boolean flag = false;
         OrderDAO orderDAO = new OrderDAO();
@@ -88,5 +87,37 @@ public class OrderLogic {
         long price = diff*tax;
 
         return price;
+    }
+    /**
+     * Method is able to return null!!!
+     * @return
+     */
+    public ArrayList<Order> selectOrders(){
+        ArrayList<Order> orders = new ArrayList<>();
+        OrderDAO orderDAO = new OrderDAO();
+        orders = orderDAO.selectUncheckedOrders();
+        return orders;
+    }
+
+    /**
+     * Method is able to return null!!!
+     * @return
+     */
+    public ArrayList<Order> selectOldOrders(){
+        ArrayList<Order> orders = new ArrayList<>();
+        OrderDAO orderDAO = new OrderDAO();
+        orders = orderDAO.selectCheckedOrders();
+        return orders;
+    }
+
+    /**
+     * Method is able to return null!!!
+     * @return
+     */
+    public ArrayList<Room> getAvailableRooms(Order order){
+        ArrayList<Room> rooms = new ArrayList<>();
+        OrderDAO dao = new OrderDAO();
+        rooms = dao.selectAvailableRooms(order);
+        return rooms;
     }
 }

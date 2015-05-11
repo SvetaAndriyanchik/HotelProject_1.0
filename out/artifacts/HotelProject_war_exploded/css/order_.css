@@ -1,0 +1,112 @@
+body {
+    background: url(../images/bg.png) repeat;
+}
+
+/*	=	Select */
+.slct {
+    display: block;
+    border-radius: 5px;
+    border: 1px solid #cecece;
+    background-color: #F6F6f6;
+    width: 90px;
+    padding: 4px 15px 4px 10px;
+    color: #444;
+    background-position: 290px -145px;
+
+    /*
+        Супер финт обрезаем текст
+        чтобы не вылезал за рамку
+    */
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+
+}
+.slct.active {
+    border-radius: 5px 5px 0 0;
+    border-bottom: none;
+}
+.drop {
+    margin: 0;
+    padding: 0;
+    width: 310px;
+    border: 1px solid #cecece;
+    border-top: none;
+    display: none;
+    position: absolute;
+    background: #fff;
+}
+.drop li {
+    list-style: none;
+    border-top: 1px dotted #e8e8e8;
+    cursor: pointer;
+    display: block;
+    color: #444;
+    padding: 4px 15px 4px 25px;
+    background-position: 10px -119px;
+}
+.drop li:hover {
+    background-color: #e8e8e8;
+    color: #222;
+}
+
+.button{
+    width: 50px;
+    height: 28px;
+    margin-left: 100px;
+    margin-top: -28px;
+
+    font-family: 'Bree Serif', serif;
+    font-weight: 300;
+    font-size: 18px;
+    color: #fff;
+    text-shadow: 0px 1px 0 rgba(0,0,0,0.25);
+
+    background: #56c2e1;
+    border: 1px solid #46b3d3;
+    border-radius: 5px;
+    cursor: pointer;
+
+    box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
+    -moz-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
+    -webkit-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
+}
+
+.button:hover {
+    background: #3f9db8;
+    border: 1px solid rgba(256,256,256,0.75);
+
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+    -moz-box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.h1{
+    font-family: 'Bree Serif', serif;
+    font-weight: 300;
+    font-size: 1.5em;
+    line-height: 34px;
+    color: #414848;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.wrapper{
+    margin-top: 100px;
+    margin-left: 550px;
+    height: 120px;
+    width: 300px;
+    z-index: 5;
+    background: #f3f3f3;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.wrapper .inside{
+    margin-left: 50px;
+    margin-top: 50px;
+}

@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebFilter( urlPatterns = { "/jsp/*" }, initParams = { @WebInitParam(name = "INDEX_PATH", value = "/index.jsp") })
+/**
+ * Secures from the external pages calls
+ */
 public class PageRedirectSecurityFilter implements Filter {
     private String indexPath;
     public void init(FilterConfig fConfig) throws ServletException {

@@ -8,6 +8,11 @@ import javax.servlet.http.HttpSession;
 
 public class LanguageCommand implements ActionCommand{
     @Override
+    /**
+     * Handling of language support
+     * Places the name of locale into the session object
+     * Forwards to the login.jsp page
+     */
     public String execute(HttpServletRequest request) {
         String page = null;
         HttpSession session = request.getSession();

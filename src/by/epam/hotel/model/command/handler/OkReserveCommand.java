@@ -8,6 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 public class OkReserveCommand implements ActionCommand {
+    /**
+     * Handler for button Ok on the reservation.jsp
+     * Checks the right form input
+     * If th input is valid - creates new order
+     * @param request
+     * @return
+     */
     @Override
     public String execute(HttpServletRequest request) {
 
@@ -19,22 +26,36 @@ public class OkReserveCommand implements ActionCommand {
         int price = Integer.parseInt(request.getParameter("room_price"));
         boolean flag = true;
 
+        /**
+         * Empty fields check
+         */
         OrderLogic orderLogic = new OrderLogic();
         if(guests == 0  || departureDate.isEmpty() || arrivalDate.isEmpty() || login.isEmpty()){
             request.setAttribute("errorMessage", "Null field");
             flag = false;
         }
 
+        /**
+         * Right date interval check
+         */
         if(!orderLogic.checkDateInterval(arrivalDate, departureDate)){
             request.setAttribute("errorMessage", "Wrong date interval");
             flag = false;
         }
+
+        /**
+         * User's balance check
+         */
 
         long orderPrice = orderLogic.calculateOrderPrice(arrivalDate, departureDate, price);
         if(!orderLogic.checkUserBalance(login, orderPrice)){
             request.setAttribute("errorMessage", "No money");
             flag = false;
         }
+
+        /**
+         * Creation of the new order
+         */
 
         if(flag) {
             if(!orderLogic.createOrder(guests, arrivalDate, departureDate, login)){

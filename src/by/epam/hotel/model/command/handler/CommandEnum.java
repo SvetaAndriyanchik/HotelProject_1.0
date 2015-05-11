@@ -5,7 +5,9 @@ import by.epam.hotel.model.command.handler.navigation.*;
 
 public enum CommandEnum {
     /**
-     * Enumeration of all commands
+     * Enumeration of all commands.
+     * Handling of commands
+     * is in {@code execute()} methods of classes-handlers
      */
     LANGUAGE{
         {
@@ -56,6 +58,16 @@ public enum CommandEnum {
     LOGOUT{
         {
             this.command = new LogoutCommand();
+        }
+    },
+    CHECK_ORDER{
+        {
+            this.command = new CheckOrderCommand();
+        }
+    },
+    SEND_ANSWER{
+        {
+            this.command = new SendAnswerCommand();
         }
     },
     ENTER {

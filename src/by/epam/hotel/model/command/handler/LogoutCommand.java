@@ -6,6 +6,11 @@ import javax.servlet.http.HttpServletRequest;
 
 
 public class LogoutCommand implements ActionCommand {
+    /**
+     * Destroys the session object and forwards to the index.jsp page
+     * @param request
+     * @return page
+     */
     @Override
     public String execute(HttpServletRequest request) {
         String page = ConfigurationManager.getProperty("path.page.index");

@@ -12,6 +12,13 @@ public class ReserveCommand implements ActionCommand {
 
     private static Logger log = Logger.getLogger(ReserveCommand.class);
 
+    /**
+     * Handler of the button Reserve on the rooms.jsp
+     * Sets values for variables {@code guests_number, room_price, pictureURL}
+     * on the page reservation
+     * @param request
+     * @return page
+     */
     @Override
     public String execute(HttpServletRequest request) {
 

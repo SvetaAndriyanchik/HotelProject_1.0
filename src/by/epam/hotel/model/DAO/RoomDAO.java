@@ -16,9 +16,11 @@ public class RoomDAO extends AbstractDAO {
     private final String SELECT_ROOM_TYPES = "SELECT * FROM room_type";
     private final String SELECT_ROOMS_QUERY = "SELECT rooms.room_number, rooms.guests_number," +
             " rooms.condition, room_type.price FROM rooms JOIN room_type ON rooms.guests_number = room_type.guests_number";
-    private final int ROOM_CONDITION_EMPTY = 0;
-    private final int ROOM_CONDITION_RESERVED = 1;
 
+    /**
+     * Selects rooms and their prices from database
+     * @return
+     */
     public ArrayList<Room> selectRooms(){
         ArrayList<Room> rooms = new ArrayList<>();
         PreparedStatement statement = null;
@@ -34,11 +36,6 @@ public class RoomDAO extends AbstractDAO {
                     room.setRoomNumber(resultSet.getInt("room_number"));
                     room.setGuests(resultSet.getInt("guests_number"));
                     room.setPrice(resultSet.getInt("price"));
-                    if(resultSet.getInt("condition") == ROOM_CONDITION_RESERVED){
-                        room.setCondition(false);
-                    } else if(resultSet.getInt("condition") == ROOM_CONDITION_EMPTY){
-                        room.setCondition(true);
-                    }
                     rooms.add(i, room);
                     i++;
                 } while (resultSet.next());
@@ -57,6 +54,10 @@ public class RoomDAO extends AbstractDAO {
         return rooms;
     }
 
+    /**
+     * Selects available room types from the database
+     * @return
+     */
     public ArrayList<Room> selectRoomTypes(){
         ArrayList<Room> rooms = new ArrayList<>();
         PreparedStatement statement = null;

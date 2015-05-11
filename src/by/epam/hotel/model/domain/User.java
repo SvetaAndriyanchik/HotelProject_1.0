@@ -3,6 +3,10 @@ package by.epam.hotel.model.domain;
 
 public class User {
 
+    /**
+     * Description of the User entity
+     */
+
     private String login;
     private String password;
     private String email;

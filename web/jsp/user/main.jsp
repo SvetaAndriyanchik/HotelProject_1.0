@@ -49,17 +49,17 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="/images/carousel/_DSC0409.jpg" alt="...">
+        <img src="/images/carousel/1c.jpg" alt="...">
         <div class="carousel-caption">
         </div>
       </div>
       <div class="item">
-        <img src="/images/carousel/IMG_2114_resize.jpg" alt="...">
+        <img src="/images/carousel/2c.jpg" alt="...">
         <div class="carousel-caption">
         </div>
       </div>
       <div class="item">
-        <img src="/images/carousel/IMG_2141_resize.jpg" alt="...">
+        <img src="/images/carousel/3c.jpg" alt="...">
         <div class="carousel-caption">
         </div>
       </div>
@@ -77,6 +77,7 @@
   </div>
 
 </form>
+
 <script src="/jquery/jquery-2.1.3.min.js"></script>
 <script src="/bootstrap/js/bootstrap_.js"></script>
 

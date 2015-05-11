@@ -71,9 +71,10 @@
     <table name="orders" schema="" catalog="hoteldb" type="TABLE">
       <column name="order_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="guests" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="arrival_date" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
-      <column name="departure_date" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
+      <column name="arrival_date" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="departure_date" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
       <column name="login" sqlType="VARCHAR" precision="16" scale="0" nullable="false" jdbcType="12"/>
+      <column name="conditio" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="order_id"/>
       <foreign-key name="order_user" columns="login" ref-table="users" ref-schema="" ref-catalog="hoteldb" ref-columns="login" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="reservation_order" table="reservations" schema="" catalog="hoteldb" columns="order_id"/>

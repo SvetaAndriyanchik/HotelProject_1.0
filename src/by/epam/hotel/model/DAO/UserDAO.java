@@ -17,6 +17,11 @@ public class UserDAO extends AbstractDAO {
     private final String SEARCH_QUERY = "SELECT * FROM users WHERE (login, password) = (?, md5(?))";
     private final String SELECT_USER_MONEY = "SELECT account.money FROM account WHERE account.id = (SELECT users.account FROM users WHERE users.login = ?)";
 
+    /**
+     * Inserts new user to the database
+     * @param user
+     * @return
+     */
     public boolean insertUser(User user){
         boolean flag = false;
         PreparedStatement statement = null;
@@ -42,6 +47,13 @@ public class UserDAO extends AbstractDAO {
         }
         return flag;
     }
+
+    /**
+     * Searches for the certain user in the database
+     * @param username
+     * @param password
+     * @return true if user exists in database
+     */
 
     public boolean findUser(String username, String password){
         boolean flag = false;

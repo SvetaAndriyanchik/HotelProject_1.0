@@ -1,9 +1,11 @@
 package by.epam.hotel.model.exception;
 
-/**
- * Created by SvetaPC on 25.03.2015.
- */
+
 public class DataBaseException extends Exception {
+
+    /**
+     * Handling the exceptions in the database
+     */
     public DataBaseException() {
     }
 
