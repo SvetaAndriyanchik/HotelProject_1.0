@@ -25,14 +25,14 @@
             <ul class="nav navbar-nav">
                 <li><a href="controller?command=goto_main"><span><fmt:message key="main.main" /></span></a></li>
                 <li><a href="controller?command=goto_rooms" name="rooms"><span><fmt:message key="main.rooms" /></span></a></li>
-                <li><a href="controller?command=goto_contacts" name="contacts"><span><fmt:message key="main.contacts" /></span></a></li>
+                <li><a href="controller?command=goto_contacts" name="contacts"><span><fmt:message key="main.orders" /></span></a></li>
                 <li><a href="controller?command=goto_aboutus" name="aboutus"><span><fmt:message key="main.aboutus" /></span></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="controller?command=logout"><fmt:message key="main.logout" /></a></li>
             </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+        </div>
+    </div>
 </nav>
 
     <div class = "wrapper">

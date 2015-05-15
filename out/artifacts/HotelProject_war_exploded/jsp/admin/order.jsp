@@ -14,7 +14,7 @@
           <label for="select" class = h1><fmt:message key="admin.rooms"/></label>
           <form name="order" action="controller" method="post">
               <input type = "hidden" name = "orderId" value = ${orderId}>
-            <select name = "room" class = slct id = "select">
+            <select name = "room" id = "select">
               <c:forEach items="${rooms}" var="element">
                 <option value = "${element.roomNumber}">${element.roomNumber}</option>
               </c:forEach>

@@ -60,8 +60,8 @@
       <primary-key name="PRIMARY" columns="id"/>
       <exported-key name="user_account" table="users" schema="" catalog="hoteldb" columns="account"/>
     </table>
-    <table name="check" schema="" catalog="hoteldb" type="TABLE">
-      <column name="check_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+    <table name="checks" schema="" catalog="hoteldb" type="TABLE">
+      <column name="check_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="login" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
       <column name="price" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="check_id"/>
@@ -74,14 +74,15 @@
       <column name="arrival_date" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
       <column name="departure_date" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
       <column name="login" sqlType="VARCHAR" precision="16" scale="0" nullable="false" jdbcType="12"/>
-      <column name="conditio" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="order_condition" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="order_price" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="order_id"/>
       <foreign-key name="order_user" columns="login" ref-table="users" ref-schema="" ref-catalog="hoteldb" ref-columns="login" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="reservation_order" table="reservations" schema="" catalog="hoteldb" columns="order_id"/>
       <index name="order_user_idx" unique="false" columns="login"/>
     </table>
     <table name="reservations" schema="" catalog="hoteldb" type="TABLE">
-      <column name="reservation_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="reservation_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="room_numb" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="admin_login" sqlType="VARCHAR" precision="16" scale="0" nullable="false" jdbcType="12"/>
       <column name="order_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
@@ -102,7 +103,6 @@
     <table name="rooms" schema="" catalog="hoteldb" type="TABLE">
       <column name="room_number" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="guests_number" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="condition" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
       <primary-key name="PRIMARY" columns="room_number"/>
       <foreign-key name="rooms_types" columns="guests_number" ref-table="room_type" ref-schema="" ref-catalog="hoteldb" ref-columns="guests_number" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="room_prices_idx" unique="false" columns="guests_number"/>
@@ -110,12 +110,12 @@
     <table name="users" schema="" catalog="hoteldb" type="TABLE">
       <column name="login" sqlType="VARCHAR" precision="16" scale="0" nullable="false" jdbcType="12"/>
       <column name="password" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
-      <column name="email" sqlType="VARBINARY" precision="32" scale="0" nullable="false" jdbcType="-3"/>
+      <column name="email" sqlType="VARBINARY" precision="32" scale="0" nullable="true" jdbcType="-3"/>
       <column name="account" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="role" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="login"/>
       <foreign-key name="user_account" columns="account" ref-table="account" ref-schema="" ref-catalog="hoteldb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <exported-key name="check_user" table="check" schema="" catalog="hoteldb" columns="login"/>
+      <exported-key name="check_user" table="checks" schema="" catalog="hoteldb" columns="login"/>
       <exported-key name="order_user" table="orders" schema="" catalog="hoteldb" columns="login"/>
       <exported-key name="reservation_user" table="reservations" schema="" catalog="hoteldb" columns="admin_login"/>
       <index name="user_account_idx" unique="false" columns="account"/>

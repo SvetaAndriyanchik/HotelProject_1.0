@@ -20,7 +20,7 @@ public class ConnectionPool {
     private static AtomicBoolean poolCreated = new AtomicBoolean(false);
 
 
-    private static final ReentrantLock lock = new ReentrantLock();
+    private static ReentrantLock lock = new ReentrantLock();
     private static  Logger logger = Logger.getLogger(ConnectionPool.class);
 
     private BlockingQueue<ConnectionWrapper> freeConnections;
@@ -28,53 +28,55 @@ public class ConnectionPool {
 
 
     private ConnectionPool(String url, String username, String password, int poolSize) {
-        if (!poolCreated.get()) {
-            try {
-                DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-            } catch (SQLException e) {
-                throw new ExceptionInInitializerError("Opa...Database registry problem");
-            }
-            freeConnections = new ArrayBlockingQueue<ConnectionWrapper>(
-                    poolSize);
-            workingConnections = new ArrayBlockingQueue<ConnectionWrapper>(
-                    poolSize);
-            for (int i = 0; i < poolSize; i++) {
-                ConnectionWrapper connection = null;
-                try {
-                    connection = new ConnectionWrapper(
-                            DriverManager.getConnection(url, username, password));
-                } catch (SQLException e) {
-                    throw new ExceptionInInitializerError("Opa...Database connection problem");
-                }
-                freeConnections.add(connection);
-            }
-            logger.debug("Pool constructor");
-            poolCreated.set(true);
+        logger.debug("Pool constructor");
+        try {
+            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+        } catch (SQLException e) {
+            throw new ExceptionInInitializerError("Opa...Database registry problem");
         }
+        freeConnections = new ArrayBlockingQueue<ConnectionWrapper>(
+                poolSize);
+        workingConnections = new ArrayBlockingQueue<ConnectionWrapper>(
+                poolSize);
+        for (int i = 0; i < poolSize; i++) {
+            ConnectionWrapper connection = null;
+            try {
+                connection = new ConnectionWrapper(
+                        DriverManager.getConnection(url, username, password));
+            } catch (SQLException e) {
+                throw new ExceptionInInitializerError("Opa...Database connection problem");
+            }
+            freeConnections.add(connection);
+        }
+        poolCreated.set(true);
     }
 
 
     public static ConnectionPool getInstance(){
+        logger.debug("getInstance()");
         String url = ConfigurationManager.getProperty("pool.url");
         String username = ConfigurationManager.getProperty("pool.username");
         String password = ConfigurationManager.getProperty("pool.password");
         int poolSize = 30;
-        try {
-            lock.lock();
+
             if(!poolCreated.get()) {
-                instance = new ConnectionPool(url, username, password, poolSize);
+                lock.lock();
+                if(instance == null) {
+                    instance = new ConnectionPool(url, username, password, poolSize);
+                }
+                lock.unlock();
+
             }
-        } finally {
-            lock.unlock();
-        }
-        logger.debug("getInstance()");
+
+
+
+
         return instance;
     }
 
     public ConnectionWrapper takeConnection() throws DataBaseException {
         ConnectionWrapper connection = null;
         try {
-            lock.lock();
             connection = freeConnections.take();
 
             workingConnections.put(connection);
@@ -83,22 +85,16 @@ public class ConnectionPool {
             throw new DataBaseException(
                     "pool connect error " + e);
         }
-        finally {
-            lock.unlock();
-        }
+
         return connection;
     }
 
     public void releaseConnection(ConnectionWrapper connection) {
         try {
-            lock.lock();
             workingConnections.remove(connection);
             freeConnections.put(connection);
         } catch (InterruptedException e) {
             logger.error(e.getMessage());
-        }
-        finally {
-            lock.unlock();
         }
     }
 

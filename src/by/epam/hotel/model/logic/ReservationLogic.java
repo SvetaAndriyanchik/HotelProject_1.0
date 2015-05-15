@@ -14,4 +14,13 @@ public class ReservationLogic {
         }
         return flag;
     }
+
+    public boolean addCheck(int orderId){
+        boolean flag = false;
+        ReservationDAO dao = new ReservationDAO();
+        if(dao.insertCheck(orderId)){
+            flag = true;
+        }
+        return flag;
+    }
 }

@@ -21,7 +21,7 @@ import java.util.Locale;
 public class OrderDAO extends AbstractDAO {
 
     private static Logger log = Logger.getLogger(OrderDAO.class);
-    private final String INSERT_ORDER_QUERY = "INSERT INTO orders (guests, arrival_date, departure_date, login, order_condition) VALUES (?, ?, ?, ?, ?)";
+    private final String INSERT_ORDER_QUERY = "INSERT INTO orders (guests, arrival_date, departure_date, login, order_condition, order_price) VALUES (?, ?, ?, ?, ?, ?)";
     private final String SELECT_CHECKED_ORDERS_QUERY = "SELECT * FROM orders WHERE order_condition = 'checked'";
     private final String SELECT_ORDERS_QUERY = "SELECT * FROM orders WHERE order_condition = 'unchecked'";
     private final String SELECT_AVAILABLE_ROOMS_QUERY = "SELECT * FROM rooms AS available WHERE available.room_number NOT IN (\n" +
@@ -50,6 +50,7 @@ public class OrderDAO extends AbstractDAO {
             statement.setTimestamp(3, new Timestamp(departure.getTime()));
             statement.setString(4, order.getLogin());
             statement.setString(5, "unchecked");
+            statement.setLong(6, order.getOrderPrice());
             statement.executeUpdate();
             flag = true;
         } catch (DataBaseException e) {

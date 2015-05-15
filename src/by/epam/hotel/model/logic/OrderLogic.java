@@ -16,11 +16,12 @@ public class OrderLogic {
 
     private static Logger log = Logger.getLogger(OrderLogic.class);
 
-    
-    public boolean createOrder(int guests, String arrivalDate, String departureDate, String login){
+
+    public boolean createOrder(int guests, String arrivalDate, String departureDate, String login, int tax){
         boolean flag = false;
         OrderDAO orderDAO = new OrderDAO();
-        Order order = new Order(guests, arrivalDate, departureDate, login);
+        long orderPrice = calculateOrderPrice(arrivalDate, departureDate, tax);
+        Order order = new Order(guests, arrivalDate, departureDate, login, orderPrice);
         if(orderDAO.insertOrder(order)){
             flag = true;
         }

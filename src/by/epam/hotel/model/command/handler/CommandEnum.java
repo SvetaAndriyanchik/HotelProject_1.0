@@ -37,7 +37,7 @@ public enum CommandEnum {
     },
     GOTO_CONTACTS{
         {
-            this.command = new GoToContactsCommand();
+            this.command = new GoToOrdersCommand();
         }
     },
     GOTO_ABOUTUS{
@@ -53,6 +53,11 @@ public enum CommandEnum {
     OK_RESERVE{
         {
             this.command = new OkReserveCommand();
+        }
+    },
+    PAY{
+        {
+            this.command = new PayCommand();
         }
     },
     LOGOUT{

@@ -23,6 +23,7 @@ public class OkReserveCommand implements ActionCommand {
         String departureDate = request.getParameter("departure");
         String arrivalDate = request.getParameter("arrival");
         String login = String.valueOf(session.getAttribute("login"));
+
         int price = Integer.parseInt(request.getParameter("room_price"));
         boolean flag = true;
 
@@ -58,7 +59,7 @@ public class OkReserveCommand implements ActionCommand {
          */
 
         if(flag) {
-            if(!orderLogic.createOrder(guests, arrivalDate, departureDate, login)){
+            if(!orderLogic.createOrder(guests, arrivalDate, departureDate, login, price)){
                 request.setAttribute("errorMessage", "Error in ordering");
                 request.setAttribute("price", 0);
             } else {

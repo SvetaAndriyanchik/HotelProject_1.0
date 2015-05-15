@@ -10,10 +10,19 @@ public class Order {
     private String arrivalDate;
     private String departureDate;
     private String login;
+    private long orderPrice;
 
 
 
     public Order() {
+    }
+
+    public Order(int guests, String arrivalDate, String departureDate, String login, long orderPrice) {
+        this.guests = guests;
+        this.arrivalDate = arrivalDate;
+        this.departureDate = departureDate;
+        this.login = login;
+        this.orderPrice = orderPrice;
     }
 
     public Order(int guests, String arrivalDate, String departureDate, String login) {
@@ -21,6 +30,7 @@ public class Order {
         this.arrivalDate = arrivalDate;
         this.departureDate = departureDate;
         this.login = login;
+        this.orderPrice = orderPrice;
     }
 
     @Override
@@ -32,6 +42,7 @@ public class Order {
 
         if (orderId != order.orderId) return false;
         if (guests != order.guests) return false;
+        if (orderPrice != order.orderPrice) return false;
         if (arrivalDate != null ? !arrivalDate.equals(order.arrivalDate) : order.arrivalDate != null) return false;
         if (departureDate != null ? !departureDate.equals(order.departureDate) : order.departureDate != null)
             return false;
@@ -46,6 +57,7 @@ public class Order {
         result = 31 * result + (arrivalDate != null ? arrivalDate.hashCode() : 0);
         result = 31 * result + (departureDate != null ? departureDate.hashCode() : 0);
         result = 31 * result + (login != null ? login.hashCode() : 0);
+        result = 31 * result + (int) (orderPrice ^ (orderPrice >>> 32));
         return result;
     }
 
@@ -89,4 +101,11 @@ public class Order {
         this.login = login;
     }
 
+    public long getOrderPrice() {
+        return orderPrice;
+    }
+
+    public void setOrderPrice(int orderPrice) {
+        this.orderPrice = orderPrice;
+    }
 }
