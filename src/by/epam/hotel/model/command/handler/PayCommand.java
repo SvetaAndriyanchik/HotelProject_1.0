@@ -15,8 +15,12 @@ public class PayCommand implements ActionCommand {
         int checkId = Integer.parseInt(request.getParameter("check_id"));
         CheckLogic checkLogic = new CheckLogic();
         if(checkLogic.payCheck(login, price, checkId)){
-            page = ConfigurationManager.getProperty("path.page.main");
+            request.setAttribute("message", "Successfully payed");
         }
+        else{
+            request.setAttribute("message","Error in pay process");
+        }
+        page = ConfigurationManager.getProperty("path.page.main");
         return page;
     }
 }

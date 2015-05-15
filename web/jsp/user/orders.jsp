@@ -7,7 +7,7 @@
 <html>
 <head>
   <link rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
-  <link href="/css/contacts.css" rel="stylesheet" type="text/css" />
+  <link href="/css/orders.css" rel="stylesheet" type="text/css" />
     <title>Orders</title>
 </head>
 <body>
@@ -36,23 +36,29 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<table>
-  <c:forEach items="${checks}" var="element">
+
+
+<table class="simple-little-table" cellpadding="0" style="margin: auto;">
+  <tr>
+    <td><fmt:message key="orders.table.price" /></td>
+    <td><fmt:message key="orders.table.id" /></td>
+    <td><fmt:message key="orders.table.action" /></td>
+  </tr>
     <tr>
-      <td>
-       ${element.price}
-       ${element.checkId}
-      </td>
-      <td>
-        <form name="orders" action="controller" method="post">
-          <button type="submit" name="command" value ="pay">Pay</button>
+      <c:forEach items="${checks}" var="element">
+        <td>${element.price} </td>
+        <td>${element.checkId}</td>
+        <td>
+        <form action="controller" method="post">
+          <button type="submit" name="command" value ="pay" class = button><fmt:message key="orders.pay" /></button>
           <input type = "hidden" name = "price" value = ${element.price}>
           <input type = "hidden" name = "login" value = ${element.login}>
           <input type = "hidden" name = "check_id" value = ${element.checkId}>
         </form>
       </td>
+     </c:forEach>
     </tr>
-  </c:forEach>
+
 </table>
 </body>
 </html>

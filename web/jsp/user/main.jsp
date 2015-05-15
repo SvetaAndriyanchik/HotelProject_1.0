@@ -39,6 +39,9 @@
     </div><!-- /.container-fluid -->
   </nav>
 
+  <p style="color: red;">
+    ${message}
+  </p>
   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
