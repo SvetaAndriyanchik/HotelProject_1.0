@@ -47,6 +47,7 @@ public class OrderLogic {
         cDeparture.setTime(departure);
 
         long delta = cDeparture.getTimeInMillis() - cArrival.getTimeInMillis();
+        log.debug(delta);
         if(delta > 0){
             flag = true;
         }

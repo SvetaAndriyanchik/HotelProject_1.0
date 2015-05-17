@@ -9,6 +9,7 @@
     <link href="/css/admin.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+<p style="color: red">${message}</p>
 <h1 class="h1"><fmt:message key="admin.h1"/></h1>
 <table class="simple-little-table" cellspacing='0' style="
         margin: auto;">

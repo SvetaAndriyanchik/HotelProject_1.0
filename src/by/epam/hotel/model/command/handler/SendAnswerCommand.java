@@ -27,7 +27,7 @@ public class SendAnswerCommand implements ActionCommand {
         if(reservationLogic.createReservation(reservation)){
             reservationLogic.addCheck(reservation.getOrderId());
             request.setAttribute("message", "Check sent successfully");
-            page = ConfigurationManager.getProperty("path.page.admin");
+            page = ConfigurationManager.getProperty("path.page.admin-main");
         }
         return page;
     }
